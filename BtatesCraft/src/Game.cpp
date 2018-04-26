@@ -47,6 +47,7 @@ Game::~Game()
 	ib.~unique_ptr();
 	vb.~unique_ptr();
 	va.~unique_ptr();
+	
 	glfwTerminate();
 }
 
