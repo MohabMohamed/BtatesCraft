@@ -179,6 +179,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\Textures\EPICNESS.png" />
+    <Image Include="res\Textures\Grass.png" />
     <Image Include="res\Textures\tex.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

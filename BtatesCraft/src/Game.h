@@ -6,6 +6,8 @@
 #include <sstream>
 #include <memory>
 #include <array>
+#include <chrono>
+#include <thread>
 #include <gl/glew.h>
 #include <gl/glfw3.h>
 #include <glm/glm.hpp>
@@ -25,6 +27,10 @@ private:
 	int m_width,m_hight;
 	GLFWwindow* window;
 	std::unique_ptr<Renderer> renderer;
+	std::chrono::steady_clock::time_point lastFrame;
+	std::chrono::steady_clock::time_point curFrame;
+	double deltaTime;
+	double FPS;
 	glm::mat4 ModelMatrix;
 	glm::mat4 ViewMatrix;
 	glm::mat4 ProjectionMatrix;
@@ -33,13 +39,16 @@ private:
 	std::unique_ptr<Shader> shader;
 	std::unique_ptr<Texture> tex;
 	//delete below(just for testing)
-	std::array<float,20> vertix;
-	std::array<unsigned int,6> indecies;
+	std::array<float,40> vertix;
+	std::array<unsigned int,36> indecies;
 	std::unique_ptr<VertexArray> va;
 	std::unique_ptr<VertexBuffer> vb;
 	std::unique_ptr<VertexBufferLayout> layout;
 	std::unique_ptr<IndexBuffer> ib;
 
+private:
+	inline void UpdateDeltaBegain();
+	inline void UpdateDeltaEnd();
 public:
 	
 	Game(const char* name, int width,int hight);
@@ -47,6 +56,7 @@ public:
 void Init();
 void GameLoop();
 bool IsRunning();
+
 
 
 };

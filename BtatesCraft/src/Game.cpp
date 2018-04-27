@@ -1,10 +1,23 @@
 #include "Game.h"
 
-
+using namespace std::chrono_literals;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
 	glViewport(0, 0, width, height);
+}
+
+inline void Game::UpdateDeltaBegain()
+{
+	curFrame = std::chrono::steady_clock::now();
+}
+
+inline void Game::UpdateDeltaEnd()
+{
+	deltaTime = (double)(curFrame.time_since_epoch().count() - lastFrame.time_since_epoch().count())* 1e-9;
+	FPS = 1.0 / deltaTime;
+	std::cout << FPS << std::endl;
+	lastFrame = curFrame;
 }
 
 Game::Game(const char * name, int width, int hight)
@@ -54,18 +67,41 @@ Game::~Game()
 void Game::Init()
 {
 	vertix = {
-		-0.5f,-0.5f,0.0f, 0.0f,0.0f,
-		0.5f,-0.5f,0.0f,  1.0f,0.0f,
-		0.5f,0.5f,0.0f,   1.0f,1.0f,
-		-0.5f,0.5f,0.0f,  0.0f,1.0f
+		//cube clock wise
+		//front 
+		1.0f, 1.0f,0.0f, 0.25f,0.0f,
+		1.0f,0.0f,0.0f,  0.5f,0.0f,
+		0.0f,0.0f,0.0f,   0.5f,1.0f,
+		0.0f,1.0f,0.0f,  0.25f,1.0f,
+		//back
+		1.0f, 1.0f,1.0f, 0.25f,0.0f,
+		1.0f,0.0f,1.0f,  0.5f,0.0f,
+		0.0f,0.0f,1.0f,   0.5f,1.0f,
+		0.0f,1.0f,1.0f,  0.25f,1.0f,
+	
 
 	};
 	
 	indecies =
 	{
+		//front
 		0,1,2,
-		2,3,0
-
+		2,3,0,
+		//back
+		4,5,6,
+		6,7,4,
+		//right
+		4,5,1,
+		1,0,4,
+		//left
+		3,2,6,
+		6,7,3,
+		//up
+		4,0,3,
+		3,7,4,
+		//down
+		5,1,2,
+		2,6,5
 	};
 	va = std::make_unique<VertexArray>();
 	vb = std::make_unique<VertexBuffer>(vertix.data(), vertix.size() * sizeof(float));
@@ -73,13 +109,13 @@ void Game::Init()
 	layout->Push<float>(3);
 	layout->Push<float>(2);
 	va->AddBuffer(*vb, *layout);
-	ib = std::make_unique<IndexBuffer>(indecies.data(), 6);
+	ib = std::make_unique<IndexBuffer>(indecies.data(), 36);
 	shader = std::make_unique<Shader>("res/Shaders/Basic.shader");
 
-	glm::mat4 translateMat = glm::translate(0.5f, -0.5f, 0.0f);
-	glm::mat4 scaleMat = glm::scale(0.3f, 0.3f, 0.0f);
+	//glm::mat4 translateMat = glm::translate(0.5f, -0.5f, 0.0f);
+	//glm::mat4 scaleMat = glm::scale(0.3f, 0.3f, 0.0f);
 
-	ModelMatrix = translateMat* scaleMat;
+	//ModelMatrix = translateMat* scaleMat;
 	ViewMatrix = glm::lookAt(
 		glm::vec3(0.0f, 0.5f, 3),
 		glm::vec3(0.0f, 0.0f, 0.0f),
@@ -89,7 +125,7 @@ void Game::Init()
 		45.0f, 4.0f / 3.0f, 1.0f, 100.0f);
 	MVP = ProjectionMatrix*ViewMatrix*ModelMatrix;
 
-	tex = std::make_unique<Texture>("res/Textures/tex.png");
+	tex = std::make_unique<Texture>("res/Textures/Grass.png");
 
 	tex->Bind();
 	shader->Bind();
@@ -97,11 +133,12 @@ void Game::Init()
 	shader->Unbind();
 
 	renderer = std::make_unique<Renderer>();
-
+	lastFrame = std::chrono::steady_clock::now();
 }
 
 void Game::GameLoop()
 {
+	UpdateDeltaBegain();
 	renderer->Clear();
 
 
@@ -121,6 +158,7 @@ void Game::GameLoop()
 
 	/* Poll for and process events */
 	glfwPollEvents();
+	UpdateDeltaEnd();
 }
 
 bool Game::IsRunning()
