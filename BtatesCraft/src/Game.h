@@ -13,6 +13,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/transform.hpp>
+
 #include "Renderer.h"
 #include "VertexArray.h"
 #include "VertexBuffer.h"
@@ -20,6 +21,7 @@
 #include "Shader.h"
 #include "VertexBufferLayout.h"
 #include "Texture.h"
+
 
 class Game
 {

@@ -168,6 +168,7 @@
   <ItemGroup>
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\GLErrorHandler.h" />
+    <ClInclude Include="src\InputHandler.h" />
     <ClInclude Include="src\Shader.h" />
     <ClInclude Include="src\IndexBuffer.h" />
     <ClInclude Include="src\Renderer.h" />

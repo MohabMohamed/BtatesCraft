@@ -1,5 +1,5 @@
 #include "Game.h"
-
+#include "InputHandler.h"
 using namespace std::chrono_literals;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
@@ -50,6 +50,7 @@ Game::Game(const char * name, int width, int hight)
 	if (glewInit() != GLEW_OK)
 		std::cout << "error in glew" << std::endl;
 	std::cout << glGetString(GL_VERSION) << std::endl;
+	InputHandler::Init(window);
 	Init();
 }
 
@@ -163,7 +164,7 @@ void Game::GameLoop()
 
 bool Game::IsRunning()
 {
-	return !glfwWindowShouldClose(window);
+	return !glfwWindowShouldClose(window)&&!(InputHandler::GetKey()==GLFW_KEY_ESCAPE);
 }
 
 
