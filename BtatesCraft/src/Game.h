@@ -13,7 +13,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/transform.hpp>
-
+#include "Camera.h"
 #include "Renderer.h"
 #include "VertexArray.h"
 #include "VertexBuffer.h"
@@ -40,6 +40,7 @@ private:
 	unsigned int MatID;
 	std::unique_ptr<Shader> shader;
 	std::unique_ptr<Texture> tex;
+	std::unique_ptr<Camera> camera;
 	//delete below(just for testing)
 	std::array<float,40> vertix;
 	std::array<unsigned int,36> indecies;

@@ -1,5 +1,6 @@
 #include "Game.h"
-#include "InputHandler.h"
+
+
 using namespace std::chrono_literals;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
@@ -50,7 +51,6 @@ Game::Game(const char * name, int width, int hight)
 	if (glewInit() != GLEW_OK)
 		std::cout << "error in glew" << std::endl;
 	std::cout << glGetString(GL_VERSION) << std::endl;
-	InputHandler::Init(window);
 	Init();
 }
 
@@ -112,16 +112,9 @@ void Game::Init()
 	va->AddBuffer(*vb, *layout);
 	ib = std::make_unique<IndexBuffer>(indecies.data(), 36);
 	shader = std::make_unique<Shader>("res/Shaders/Basic.shader");
-
-	//glm::mat4 translateMat = glm::translate(0.5f, -0.5f, 0.0f);
-	//glm::mat4 scaleMat = glm::scale(0.3f, 0.3f, 0.0f);
-
-	//ModelMatrix = translateMat* scaleMat;
-	ViewMatrix = glm::lookAt(
-		glm::vec3(0.0f, 0.5f, 3),
-		glm::vec3(0.0f, 0.0f, 0.0f),
-		glm::vec3(0, 1, 0)
-	);
+	camera = std::make_unique<Camera>(window);
+	ModelMatrix= glm::mat4(1.0f);
+	ViewMatrix = camera->GetViewMat();
 	ProjectionMatrix = glm::perspective(
 		45.0f, 4.0f / 3.0f, 1.0f, 100.0f);
 	MVP = ProjectionMatrix*ViewMatrix*ModelMatrix;
@@ -142,12 +135,13 @@ void Game::GameLoop()
 	UpdateDeltaBegain();
 	renderer->Clear();
 
-
+	camera->Input(deltaTime);
 	va->Bind();
 	ib->Bind();
 
 	shader->Bind();
-
+	ViewMatrix = camera->GetViewMat();
+	MVP = ProjectionMatrix*ViewMatrix*ModelMatrix;
 	shader->SetUniformElement("MVP", MVP);
 	shader->SetUniformElement("u_texture", 0);
 	shader->SetUniformElement("color", 0.5f, 0.2f, 0.1f, 1.0f);
@@ -164,7 +158,7 @@ void Game::GameLoop()
 
 bool Game::IsRunning()
 {
-	return !glfwWindowShouldClose(window)&&!(InputHandler::GetKey()==GLFW_KEY_ESCAPE);
+	return !glfwWindowShouldClose(window)&&!(glfwGetKey(window,GLFW_KEY_ESCAPE));
 }
 
 
