@@ -4,7 +4,7 @@
 Camera::Camera(GLFWwindow* Window)
 :window(Window)
 {
-	Position = glm::vec3(0.0f, 0.0f, -3.0f);
+	Position = glm::vec3(0.0f, 5.0f, 0.0f);
 	Front = glm::vec3(0.0f, 0.0f, -1.0f);
 	Up = glm::vec3(0.0f, 1.0f, 0.0f);
 	WorldUp = Up;

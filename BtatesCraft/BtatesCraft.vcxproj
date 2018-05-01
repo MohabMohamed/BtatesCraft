@@ -170,6 +170,7 @@
     <ClInclude Include="src\Camera.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\GLErrorHandler.h" />
+    <ClInclude Include="src\Random.h" />
     <ClInclude Include="src\Shader.h" />
     <ClInclude Include="src\IndexBuffer.h" />
     <ClInclude Include="src\Renderer.h" />

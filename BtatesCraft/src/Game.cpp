@@ -79,8 +79,26 @@ void Game::Init()
 		1.0f,0.0f,1.0f,  0.5f,0.0f,
 		0.0f,0.0f,1.0f,   0.5f,1.0f,
 		0.0f,1.0f,1.0f,  0.25f,1.0f,
-	
-
+		//up
+		1.0f, 1.0f,1.0f, 0.0f,0.0f,
+		1.0f, 1.0f,0.0f, 0.25f,0.0f,
+		0.0f,1.0f,0.0f,  0.25f,1.0f,
+		0.0f,1.0f,1.0f,  0.0f,1.0f,
+		//Right
+		1.0f, 1.0f,1.0f, 0.25f,0.0f,
+		1.0f,0.0f,1.0f,  0.5f,0.0f,
+		1.0f,0.0f,0.0f,  0.5f,1.0f,
+		1.0f, 1.0f,0.0f, 0.25f,1.0f,
+		//left
+		0.0f,1.0f,1.0f,  0.25f,0.0f,
+		0.0f,1.0f,0.0f,  0.25f,1.0f,
+		0.0f,0.0f,0.0f,   0.5f,1.0f,
+		0.0f,0.0f,1.0f,  0.5f,0.0f,
+		//down
+		1.0f,0.0f,1.0f,  0.75f,0.0f,
+		0.0f,0.0f,1.0f,   0.75f,1.0f,
+		0.0f,0.0f,0.0f,   0.5f,1.0f,
+		1.0f,0.0f,0.0f,  0.5f,0.0f
 	};
 	
 	indecies =
@@ -91,18 +109,19 @@ void Game::Init()
 		//back
 		4,5,6,
 		6,7,4,
-		//right
-		4,5,1,
-		1,0,4,
-		//left
-		3,2,6,
-		6,7,3,
 		//up
-		4,0,3,
-		3,7,4,
+		8,9,10,
+		10,11,8,
+		//right
+		12,13,14,
+		14,15,12,
+		//left
+		16,17,18,
+		18,19,16,
+		
 		//down
-		5,1,2,
-		2,6,5
+		20,21,22,
+		22,23,20
 	};
 	va = std::make_unique<VertexArray>();
 	vb = std::make_unique<VertexBuffer>(vertix.data(), vertix.size() * sizeof(float));
@@ -113,7 +132,7 @@ void Game::Init()
 	ib = std::make_unique<IndexBuffer>(indecies.data(), 36);
 	shader = std::make_unique<Shader>("res/Shaders/Basic.shader");
 	camera = std::make_unique<Camera>(window);
-	ModelMatrix= glm::mat4(1.0f);
+	ModelMatrix= glm::translate(0,0,0);
 	ViewMatrix = camera->GetViewMat();
 	ProjectionMatrix = glm::perspective(
 		45.0f, 4.0f / 3.0f, 1.0f, 100.0f);

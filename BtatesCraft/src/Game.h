@@ -42,7 +42,7 @@ private:
 	std::unique_ptr<Texture> tex;
 	std::unique_ptr<Camera> camera;
 	//delete below(just for testing)
-	std::array<float,40> vertix;
+	std::array<float,120> vertix;
 	std::array<unsigned int,36> indecies;
 	std::unique_ptr<VertexArray> va;
 	std::unique_ptr<VertexBuffer> vb;
