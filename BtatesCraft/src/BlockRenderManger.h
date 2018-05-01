@@ -1,6 +1,9 @@
 #pragma once
-#include "BlockDataBase.h"
+#include <vector>
+#include <array>
 #include <glm\glm.hpp>
+#include "BlockType.h"
+
 
 class  BlockRenderManger
 {

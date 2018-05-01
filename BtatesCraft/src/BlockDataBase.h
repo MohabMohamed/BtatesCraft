@@ -1,5 +1,10 @@
 #pragma once
-#include "Block.h"
+#include "BlockType.h"
+#include <array>
+#include <memory>
+
+class Block;
+
 
 namespace BlockDataBase
 {

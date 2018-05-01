@@ -7,15 +7,8 @@
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
 #include "Texture.h"
+#include "BlockType.h"
 
-enum class BlockType 
-{
-	Air,
-	Grass,
-	Dirt,
-	Stone,
-	BlockTypeCount
-};
 
 class Block
 {

@@ -1,4 +1,5 @@
 #include "BlockDataBase.h"
+#include "Block.h"
 
 void BlockDataBase::Init()
 {
