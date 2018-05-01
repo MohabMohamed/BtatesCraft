@@ -1,6 +1,24 @@
 #include "Block.h"
 
+
+
+std::array<float, 120> Block::vertix;
+std::array<unsigned int, 36> Block::indecies;
+std::unique_ptr<VertexArray> Block::va;
+std::unique_ptr<VertexBuffer> Block::vb;
+std::unique_ptr<VertexBufferLayout> Block::layout;
+std::unique_ptr<IndexBuffer> Block::ib;
+
+
 Block::Block()
+	:Collide(false)
+{}
+
+Block::Block(bool collide)
+	:Collide(collide)
+{}
+
+void Block::Init()
 {
 	vertix = {
 		//cube clock wise
@@ -65,7 +83,6 @@ Block::Block()
 	layout->Push<float>(2);
 	va->AddBuffer(*vb, *layout);
 	ib = std::make_unique<IndexBuffer>(indecies.data(), 36);
-	Collide = false;
 }
 
 void Block::SetTexture(std::string& Path)

@@ -13,27 +13,32 @@ enum class BlockType
 	Air,
 	Grass,
 	Dirt,
-	Water,
+	Stone,
 	BlockTypeCount
 };
 
 class Block
 {
 private:
-	std::array<float, 120> vertix;
-	std::array<unsigned int, 36> indecies;
-	std::unique_ptr<VertexArray> va;
-	std::unique_ptr<VertexBuffer> vb;
-	std::unique_ptr<VertexBufferLayout> layout;
-	std::unique_ptr<IndexBuffer> ib;
+	static	std::array<float, 120> vertix;
+	static	std::array<unsigned int, 36> indecies;
+	static	std::unique_ptr<VertexArray> va;
+	static	std::unique_ptr<VertexBuffer> vb;
+	static	std::unique_ptr<VertexBufferLayout> layout;
+	static	std::unique_ptr<IndexBuffer> ib;
+
 	std::unique_ptr<Texture> texture;
 	bool Collide;
 public:
+
+
 	Block();
-	void		  SetTexture(std::string& Path);
-	void		  BindTexture(BlockType);
-	VertexArray*  GetVertexArray();
-	IndexBuffer*  GetIndexBuff();
+	Block(bool collide);
+static  void		  Init();
+		void		  SetTexture(std::string& Path);
+		void		  BindTexture(BlockType);
+static	VertexArray*  GetVertexArray();
+static	IndexBuffer*  GetIndexBuff();
 
 
 };
