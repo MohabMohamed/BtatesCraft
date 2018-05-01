@@ -11,7 +11,7 @@ std::unique_ptr<IndexBuffer> Block::ib;
 
 
 Block::Block()
-	:Collide(false)
+	:Collide(true)
 {}
 
 Block::Block(bool collide)
@@ -85,7 +85,7 @@ void Block::Init()
 	ib = std::make_unique<IndexBuffer>(indecies.data(), 36);
 }
 
-void Block::SetTexture(std::string& Path)
+void Block::SetTexture(const std::string& Path)
 {
 	texture = std::make_unique<Texture>(Path);
 }

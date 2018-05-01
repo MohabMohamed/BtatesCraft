@@ -35,7 +35,7 @@ public:
 	Block();
 	Block(bool collide);
 static  void		  Init();
-		void		  SetTexture(std::string& Path);
+		void		  SetTexture(const std::string& Path);
 		void		  BindTexture(BlockType);
 static	VertexArray*  GetVertexArray();
 static	IndexBuffer*  GetIndexBuff();
