@@ -168,6 +168,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Shaders\Basic.shader" />
+    <None Include="res\Shaders\Block.shader" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Block.h" />

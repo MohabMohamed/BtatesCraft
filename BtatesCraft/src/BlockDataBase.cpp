@@ -1,6 +1,9 @@
 #include "BlockDataBase.h"
 #include "Block.h"
 
+namespace BlockDataBase {
+	std::array<std::unique_ptr<Block>, (int)BlockType::BlockTypeCount> __Blocks;
+}
 void BlockDataBase::Init()
 {
 
@@ -14,7 +17,22 @@ void BlockDataBase::Init()
 
 }
 
-const Block & BlockDataBase::GetBlockData(BlockType type) 
+ Block & BlockDataBase::GetBlockData(BlockType type) 
 {
-	return __Blocks[(int8_t)type].get();
+	return *__Blocks[(int8_t)type];
 }
+
+ VertexBuffer * BlockDataBase::GetVertexBuffer()
+ {
+	 return Block::GetVertexBuffer();
+ }
+
+ VertexBufferLayout * BlockDataBase::GetVertexLayout()
+ {
+	 return Block::GetVertexLayout();
+ }
+
+ IndexBuffer * BlockDataBase::GetIndexBuff()
+ {
+	 return Block::GetIndexBuff();
+ }

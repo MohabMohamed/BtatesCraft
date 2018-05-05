@@ -3,11 +3,11 @@
 #include <array>
 #include <string>
 #include "VertexBufferLayout.h"
-#include "VertexArray.h"
-#include "VertexBuffer.h"
-#include "IndexBuffer.h"
-#include "Texture.h"
 #include "BlockType.h"
+#include "Texture.h"
+
+class VertexBuffer;
+class IndexBuffer;
 
 
 class Block
@@ -15,7 +15,7 @@ class Block
 private:
 	static	std::array<float, 120> vertix;
 	static	std::array<unsigned int, 36> indecies;
-	static	std::unique_ptr<VertexArray> va;
+
 	static	std::unique_ptr<VertexBuffer> vb;
 	static	std::unique_ptr<VertexBufferLayout> layout;
 	static	std::unique_ptr<IndexBuffer> ib;
@@ -30,7 +30,8 @@ public:
 static  void		  Init();
 		void		  SetTexture(const std::string& Path);
 		void		  BindTexture(BlockType);
-static	VertexArray*  GetVertexArray();
+static	VertexBuffer*  GetVertexBuffer();
+static	VertexBufferLayout*  GetVertexLayout();
 static	IndexBuffer*  GetIndexBuff();
 
 
