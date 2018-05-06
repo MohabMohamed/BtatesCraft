@@ -12,6 +12,7 @@ public:
 	~VertexArray();
 	void AddBuffer(const VertexBuffer&, const VertexBufferLayout&);
 	void AddBuffer(const VertexBuffer & vb, const VertexBufferLayout & layout, const unsigned int instanceID, const VertexBufferLayout & instanceLayout);
+	void AddBuffer(const VertexBuffer * vb, const VertexBufferLayout * layout, const unsigned int instanceID, const VertexBufferLayout * instanceLayout);
 	void AddBuffer(const VertexBuffer&&,const VertexBufferLayout&&);
 	void AddBuffer(const VertexBuffer && vb, const VertexBufferLayout && layout, const unsigned int instanceID, const VertexBufferLayout && instanceLayout);
 

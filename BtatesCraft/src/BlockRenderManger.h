@@ -18,12 +18,14 @@ private:
 	std::unique_ptr<VertexBufferLayout> m_instancingLayout;
 	std::unique_ptr<Renderer> renderer;
 	std::unique_ptr<Shader> blockShader;
+	glm::mat4 MVP;
 public:
 	 BlockRenderManger();
 	~BlockRenderManger();
 	void AddBlock(BlockType type,glm::ivec2 ChunkOffset,int x, int y, int z);
 	void DeleteBlock(BlockType type, glm::ivec2 ChunkOffset, int x, int y, int z);
 	void Render();
+	void SetMVP(glm::mat4& mvp);
 private:
 	void UpdateBlocks(BlockType type);
 

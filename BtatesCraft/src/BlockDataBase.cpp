@@ -12,8 +12,10 @@ void BlockDataBase::Init()
 	__Blocks[(int8_t)BlockType::Dirt] = std::make_unique<Block>();
 	__Blocks[(int8_t)BlockType::Stone] = std::make_unique<Block>();
 	__Blocks[(int8_t)BlockType::Grass]->SetTexture("res/Textures/Grass.png");
-	//TODO : set the rest textures
 
+	//TODO : set the rest textures
+	__Blocks[(int8_t)BlockType::Dirt]->SetTexture("res/Textures/Grass.png");
+	__Blocks[(int8_t)BlockType::Stone]->SetTexture("res/Textures/Grass.png");
 
 }
 

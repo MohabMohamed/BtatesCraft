@@ -1,5 +1,5 @@
 #include "Game.h"
-
+#include "Block.h"
 
 using namespace std::chrono_literals;
 
@@ -51,23 +51,19 @@ Game::Game(const char * name, int width, int hight)
 	if (glewInit() != GLEW_OK)
 		std::cout << "error in glew" << std::endl;
 	std::cout << glGetString(GL_VERSION) << std::endl;
+	
 	Init();
+	
 }
 
 Game::~Game()
 {
-	shader.~unique_ptr();
-	tex.~unique_ptr();
-	ib.~unique_ptr();
-	vb.~unique_ptr();
-	va.~unique_ptr();
-	
-	glfwTerminate();
+		glfwTerminate();
 }
 
 void Game::Init()
 {
-	vertix = {
+	/*vertix = {
 		//cube clock wise
 		//front 
 		1.0f, 1.0f,0.0f, 0.25f,0.0f,
@@ -131,12 +127,6 @@ void Game::Init()
 	va->AddBuffer(*vb, *layout);
 	ib = std::make_unique<IndexBuffer>(indecies.data(), 36);
 	shader = std::make_unique<Shader>("res/Shaders/Basic.shader");
-	camera = std::make_unique<Camera>(window);
-	ModelMatrix= glm::translate(0,0,0);
-	ViewMatrix = camera->GetViewMat();
-	ProjectionMatrix = glm::perspective(
-		45.0f, 4.0f / 3.0f, 1.0f, 100.0f);
-	MVP = ProjectionMatrix*ViewMatrix*ModelMatrix;
 
 	tex = std::make_unique<Texture>("res/Textures/Grass.png");
 
@@ -144,6 +134,15 @@ void Game::Init()
 	shader->Bind();
 	shader->SetUniformElement("MVP", MVP);
 	shader->Unbind();
+
+	*/
+	BlockRenderer = std::make_unique<BlockRenderManger>();
+	camera = std::make_unique<Camera>(window);
+	ModelMatrix = glm::translate(0, 0, 0);
+	ViewMatrix = camera->GetViewMat();
+	ProjectionMatrix = glm::perspective(
+		45.0f, 4.0f / 3.0f, 1.0f, 100.0f);
+	MVP = ProjectionMatrix*ViewMatrix*ModelMatrix;
 
 	renderer = std::make_unique<Renderer>();
 	lastFrame = std::chrono::steady_clock::now();
@@ -155,17 +154,21 @@ void Game::GameLoop()
 	renderer->Clear();
 
 	camera->Input(deltaTime);
-	va->Bind();
+	/*va->Bind();
 	ib->Bind();
 
 	shader->Bind();
-	ViewMatrix = camera->GetViewMat();
-	MVP = ProjectionMatrix*ViewMatrix*ModelMatrix;
+
 	shader->SetUniformElement("MVP", MVP);
 	shader->SetUniformElement("u_texture", 0);
 	shader->SetUniformElement("color", 0.5f, 0.2f, 0.1f, 1.0f);
 
-	renderer->Draw(*va,* ib, *shader);
+	renderer->Draw(*va,* ib, *shader);*/
+
+	ViewMatrix = camera->GetViewMat();
+	MVP = ProjectionMatrix*ViewMatrix*ModelMatrix;
+	BlockRenderer->SetMVP(MVP);
+	BlockRenderer->Render();
 
 	/* Swap front and back buffers */
 	glfwSwapBuffers(window);

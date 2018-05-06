@@ -15,12 +15,7 @@
 #include <glm/gtx/transform.hpp>
 #include "Camera.h"
 #include "Renderer.h"
-#include "VertexArray.h"
-#include "VertexBuffer.h"
-#include "IndexBuffer.h"
-#include "Shader.h"
-#include "VertexBufferLayout.h"
-#include "Texture.h"
+#include "BlockRenderManger.h"
 
 
 class Game
@@ -38,16 +33,20 @@ private:
 	glm::mat4 ProjectionMatrix;
 	glm::mat4 MVP;
 	unsigned int MatID;
-	std::unique_ptr<Shader> shader;
-	std::unique_ptr<Texture> tex;
+
 	std::unique_ptr<Camera> camera;
+	std::unique_ptr<Shader> BlockShader;
+	std::unique_ptr<BlockRenderManger> BlockRenderer;
 	//delete below(just for testing)
+	/*
+	
+	std::unique_ptr<Texture> tex;
 	std::array<float,120> vertix;
 	std::array<unsigned int,36> indecies;
 	std::unique_ptr<VertexArray> va;
 	std::unique_ptr<VertexBuffer> vb;
 	std::unique_ptr<VertexBufferLayout> layout;
-	std::unique_ptr<IndexBuffer> ib;
+	std::unique_ptr<IndexBuffer> ib;*/
 
 private:
 	inline void UpdateDeltaBegain();
