@@ -4,15 +4,16 @@
 #include "BlockRenderManger.h"
 #include "vendor\PerlinNoise\PerlinNoise.h"
 
-Chunck::Chunck(BlockRenderManger * blocksRenderer,glm::ivec2 position, unsigned int seed)
+Chunck::Chunck(BlockRenderManger * blocksRenderer,glm::ivec2& position, unsigned int seed)
 	:Position(position),BlocksRenderer(blocksRenderer)
 {
+
 	PerlinNoise noise(seed);
 	
 	int normlizer = std::pow(10, std::max(NumDigits(position.x), NumDigits(position.y)));
 	glm::vec2 normPos;
-	normPos.x = float(position.x) / normlizer;
-	normPos.y = float(position.y) / normlizer;
+	normPos.x = float(position.x) / float(normlizer);
+	normPos.y = float(position.y) / float(normlizer);
 	double xnor, ynor,hight;
 	for(int x=0;x<16;x++)
 	{

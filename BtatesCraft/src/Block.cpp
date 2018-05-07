@@ -91,9 +91,10 @@ void Block::SetTexture(const std::string& Path)
 	texture = std::make_unique<Texture>(Path);
 }
 
-void Block::BindTexture(BlockType Type)
+void Block::BindTexture()
 {
-	texture->Bind(unsigned int(Type) - 1);
+
+	texture->Bind(0);
 }
 
 VertexBuffer * Block::GetVertexBuffer()

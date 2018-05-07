@@ -13,11 +13,15 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/transform.hpp>
+#include <vector>
+#include <memory.h>
 #include "Camera.h"
 #include "Renderer.h"
 #include "BlockRenderManger.h"
+#include "Chunck.h"
 
-
+#define		CHUNCK_DIM	5
+#define		CHUNCK_VOL	CHUNCK_DIM*CHUNCK_DIM
 class Game
 {
 private:
@@ -33,7 +37,8 @@ private:
 	glm::mat4 ProjectionMatrix;
 	glm::mat4 MVP;
 	unsigned int MatID;
-
+	unsigned int Seed;
+	std::array<std::unique_ptr<Chunck>,CHUNCK_VOL > chuncks;
 	std::unique_ptr<Camera> camera;
 	std::unique_ptr<Shader> BlockShader;
 	std::unique_ptr<BlockRenderManger> BlockRenderer;

@@ -18,6 +18,8 @@ struct VertexBufferElement
 			return 4;
 		case GL_FLOAT:
 			return 4;
+		case GL_INT:
+			return 4;
 		}
 		ASSERT(false);
 		return 0;
@@ -53,6 +55,12 @@ public:
 	{
 		m_Elements.push_back({ GL_UNSIGNED_INT,count,false });
 		m_stride += count *  VertexBufferElement::GetTypeSize(GL_UNSIGNED_INT);
+	}
+	template <>
+	void Push<int>(unsigned int count)
+	{
+		m_Elements.push_back({ GL_INT,count,false });
+		m_stride += count *  VertexBufferElement::GetTypeSize(GL_INT);
 	}
 
 	template <>

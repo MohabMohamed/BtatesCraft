@@ -29,7 +29,7 @@ public:
 	Block(bool collide);
 static  void		  Init();
 		void		  SetTexture(const std::string& Path);
-		void		  BindTexture(BlockType);
+		void		  BindTexture();
 static	VertexBuffer*  GetVertexBuffer();
 static	VertexBufferLayout*  GetVertexLayout();
 static	IndexBuffer*  GetIndexBuff();

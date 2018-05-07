@@ -51,7 +51,7 @@ Game::Game(const char * name, int width, int hight)
 	if (glewInit() != GLEW_OK)
 		std::cout << "error in glew" << std::endl;
 	std::cout << glGetString(GL_VERSION) << std::endl;
-	
+	Seed = std::chrono::steady_clock::now().time_since_epoch().count();
 	Init();
 	
 }
@@ -141,11 +141,19 @@ void Game::Init()
 	ModelMatrix = glm::translate(0, 0, 0);
 	ViewMatrix = camera->GetViewMat();
 	ProjectionMatrix = glm::perspective(
-		45.0f, 4.0f / 3.0f, 1.0f, 100.0f);
+		45.0f, 4.0f / 3.0f, 1.0f, 1000.0f);
 	MVP = ProjectionMatrix*ViewMatrix*ModelMatrix;
 
-	renderer = std::make_unique<Renderer>();
+	BlockRenderer = std::make_unique<BlockRenderManger>();
 	lastFrame = std::chrono::steady_clock::now();
+	glm::ivec2 pos;
+	for (int i = 0; i < CHUNCK_VOL; i++) 
+	{
+		pos.x = i / CHUNCK_DIM;
+		pos.y = i % CHUNCK_DIM;
+			chuncks[i] = std::make_unique<Chunck>(BlockRenderer.get(), pos*16 , Seed);
+		
+	}
 }
 
 void Game::GameLoop()

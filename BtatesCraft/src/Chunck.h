@@ -11,7 +11,7 @@ private:
 	glm::ivec2 Position;
 	BlockRenderManger * BlocksRenderer;
 public:
-	Chunck(BlockRenderManger * blocksRenderer,glm::ivec2 position, unsigned int seed);
+	Chunck(BlockRenderManger * blocksRenderer,glm::ivec2& position, unsigned int seed);
 	~Chunck();
 	int8_t GetType(int x, int y, int z);
 	glm::ivec2 GetPosition();

@@ -19,6 +19,7 @@ private:
 	std::unique_ptr<Renderer> renderer;
 	std::unique_ptr<Shader> blockShader;
 	glm::mat4 MVP;
+	bool firstTime = true;
 public:
 	 BlockRenderManger();
 	~BlockRenderManger();

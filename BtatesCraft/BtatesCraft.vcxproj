@@ -193,9 +193,9 @@
     <ClInclude Include="src\VertexBufferLayout.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\Textures\EPICNESS.png" />
+    <Image Include="res\Textures\Dirt.png" />
     <Image Include="res\Textures\Grass.png" />
-    <Image Include="res\Textures\tex.png" />
+    <Image Include="res\Textures\Sand.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
