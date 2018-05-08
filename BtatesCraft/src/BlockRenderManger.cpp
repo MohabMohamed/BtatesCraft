@@ -65,6 +65,11 @@ void BlockRenderManger::DeleteBlock(BlockType type, glm::ivec2 ChunkOffset, int 
 	firstTime = true;
 }
 
+void BlockRenderManger::Clear()
+{
+	renderer->Clear();
+}
+
 void BlockRenderManger::Render()
 {
 
