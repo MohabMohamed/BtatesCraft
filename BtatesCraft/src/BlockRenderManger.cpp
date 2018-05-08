@@ -40,7 +40,7 @@ void BlockRenderManger::AddBlock(BlockType type, glm::ivec2 ChunkOffset, int x, 
 {
 	if (type == BlockType::Air)
 		return;
-	m_RenderBlocks[(int)type - 1].push_back(glm::ivec3(ChunkOffset.x + x, ChunkOffset.y + y, z) );
+	m_RenderBlocks[(int)type - 1].push_back(glm::ivec3(ChunkOffset.x + x, y, ChunkOffset.y + z) );
 	//UpdateBlocks(type);
 	firstTime = true;
 }

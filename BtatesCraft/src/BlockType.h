@@ -2,8 +2,10 @@
 enum class BlockType
 {
 	Air,
+	
+	Stone,
 	Grass,
 	Dirt,
-	Stone,
+
 	BlockTypeCount
 };

@@ -12,22 +12,25 @@ Chunck::Chunck(BlockRenderManger * blocksRenderer,glm::ivec2& position, unsigned
 	
 	int normlizer = std::pow(10, std::max(NumDigits(position.x), NumDigits(position.y)));
 	glm::vec2 normPos;
-	normPos.x = float(position.x) / float(normlizer);
-	normPos.y = float(position.y) / float(normlizer);
-	double xnor, ynor,hight;
+	normPos.x = float(position.x) / float(normlizer) * 100;
+	normPos.y = float(position.y) / float(normlizer) * 100;
+	double xnor, znor,hight;
 	for(int x=0;x<16;x++)
 	{
-		 xnor = double(x) / 16;
-		for (int y = 0; y < 16; y++) 
+		 xnor = double(x) / 28;
+		 for (int z = 0; z < 16; z++)
 		{
-			 ynor = double(y) / 16;
-			hight =std::ceil(map(noise.noise(xnor + normPos.x, ynor + normPos.y, 0.5),0,1.0,4.0,16.0));
+			 znor = double(z) / 28;
+			hight =std::ceil(map(noise.noise(xnor + normPos.x/10, 0.5, znor + normPos.y/10),0,1.0,4.0,16.0));
 	
-			for (int z = 0; z < 16; z++)
+			
+			for (int y = 0; y < 16; y++)
 			{
-				if (z == 0)Blocks[x][y][z] = (int8_t)BlockType::Stone;
-				else if (z > hight)Blocks[x][y][z] = (int8_t)BlockType::Air;
-				else Blocks[x][y][z] = (int8_t) map(noise.noise(xnor + normPos.x, ynor + normPos.y, double(z) / 16),0,1.0,1.0,(double)BlockType::BlockTypeCount-1);
+				if (y == 0)Blocks[x][y][z] = (int8_t)BlockType::Stone;
+				else if (y > hight)Blocks[x][y][z] = (int8_t)BlockType::Air;
+				else Blocks[x][y][z] = (int8_t) map(noise.noise(xnor + normPos.x,  normPos.y, znor + double(z) / 28),0,1.0,1.0,(double)BlockType::BlockTypeCount);
+				if (y < hight&&Blocks[x][y][z] == (int8_t)BlockType::Grass)Blocks[x][y][z] = (int8_t)BlockType::Dirt;
+				if (y == hight&&Blocks[x][y][z] == (int8_t)BlockType::Dirt)Blocks[x][y][z] = (int8_t)BlockType::Grass;
 				blocksRenderer->AddBlock(BlockType(Blocks[x][y][z]), position, x, y, z);
 			}
 

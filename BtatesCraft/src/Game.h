@@ -10,7 +10,7 @@ class Chunck;
 struct GLFWwindow;
 
 
-#define		WORLD_LEN	5
+#define		WORLD_LEN	10
 #define		WORLD_AREA	WORLD_LEN*WORLD_LEN
 class Game
 {
