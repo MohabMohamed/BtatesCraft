@@ -34,6 +34,7 @@ private:
 private:
 	inline void UpdateDeltaBegain();
 	inline void UpdateDeltaEnd();
+	void InitChunks();
 public:
 	
 	Game(const char* name, int width,int hight);

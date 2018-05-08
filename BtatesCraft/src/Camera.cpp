@@ -1,13 +1,14 @@
 #include "Camera.h"
-
+#include <iostream>
 
 Camera::Camera(GLFWwindow* Window)
 :window(Window)
 {
-	Position = glm::vec3(0.0f, 5.0f, 0.0f);
+	Position = glm::vec3(0.0f, 18.0f, 0.0f);
 	Front = glm::vec3(0.0f, 0.0f, -1.0f);
 	Up = glm::vec3(0.0f, 1.0f, 0.0f);
-	WorldUp = Up;
+	
+	
 	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 }
 
@@ -19,8 +20,8 @@ void Camera::Input(float deltaTime)
 {
 	KeyboardInput(deltaTime);
 	MouseInput(deltaTime);
-	Right = glm::normalize(glm::cross(Front, WorldUp));
-	Up = glm::normalize(glm::cross(Right, Front));
+	Right = glm::normalize(glm::cross(Front, Up));
+
 }
 
 glm::mat4 Camera::GetViewMat()
@@ -41,9 +42,9 @@ void Camera::KeyboardInput(float deltaTime)
 	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 		Position += glm::normalize(glm::cross(Front, Up)) * Speed*deltaTime;
 	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
-		Position+= Speed*deltaTime * WorldUp;
+		Position+= Speed*deltaTime * Up;
 	if (glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
-		Position -= Speed*deltaTime * WorldUp;
+		Position -= Speed*deltaTime * Up;
 }
 
 void Camera::MouseInput(float deltaTime)

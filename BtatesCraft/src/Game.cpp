@@ -25,7 +25,7 @@ inline void Game::UpdateDeltaEnd()
 {
 	deltaTime = (double)(curFrame.time_since_epoch().count() - lastFrame.time_since_epoch().count())* 1e-9;
 	FPS = 1.0 / deltaTime;
-	std::cout << FPS << std::endl;
+	//std::cout << FPS << std::endl;
 	lastFrame = curFrame;
 }
 
@@ -81,16 +81,22 @@ void Game::Init()
 
 	BlockRenderer = std::make_unique<BlockRenderManger>();
 	lastFrame = std::chrono::steady_clock::now();
-	glm::ivec2 pos;
-	for (int i = 0; i < WORLD_AREA; i++) 
-	{
-		pos.x = i / WORLD_LEN;
-		pos.y = i % WORLD_LEN;
-			chuncks[i] = std::make_unique<Chunck>(BlockRenderer.get(), pos*16 , Seed);
-		
-	}
+	InitChunks();
 }
+void Game::InitChunks() {
+	glm::ivec2 pos;
+	int i = 0;
+	for (int x = WORLD_LEN / 2 * -1; x < WORLD_LEN / 2; x++)
+	{
+		for (int y = WORLD_LEN / 2 * -1; y < WORLD_LEN / 2; y++) {
+			pos.x = x;
+			pos.y = y;
+			chuncks[i] = std::make_unique<Chunck>(BlockRenderer.get(), pos * 16, Seed);
+			i++;
+		}
+	}
 
+}
 void Game::GameLoop()
 {
 	UpdateDeltaBegain();
