@@ -2,7 +2,7 @@
 #include <algorithm>
 #include "BlockType.h"
 #include "BlockRenderManger.h"
-#include "vendor\PerlinNoise\PerlinNoise.h"
+#include "vendor/PerlinNoise/PerlinNoise.h"
 
 Chunck::Chunck(BlockRenderManger * blocksRenderer,glm::ivec2& position, unsigned int seed)
 	:Position(position),BlocksRenderer(blocksRenderer)

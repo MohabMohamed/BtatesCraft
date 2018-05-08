@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include <GL\glew.h>
+#include "GL/glew.h"
 #include "GLErrorHandler.h"
 
 struct VertexBufferElement

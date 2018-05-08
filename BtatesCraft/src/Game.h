@@ -8,11 +8,11 @@
 #include <array>
 #include <chrono>
 #include <thread>
-#include <gl/glew.h>
-#include <gl/glfw3.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/transform.hpp>
+#include "gl/glew.h"
+#include "gl/glfw3.h"
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+#include "glm/gtx/transform.hpp"
 #include <vector>
 #include <memory.h>
 #include "Camera.h"
