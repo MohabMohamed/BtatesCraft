@@ -9,7 +9,7 @@
 int main()
 {
 	
-	Game game("BtatesCraft",500,500);
+	Game game("BtatesCraft",1000,1000);
 		
 	
 	

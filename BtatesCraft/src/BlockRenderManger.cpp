@@ -9,19 +9,23 @@ BlockRenderManger::BlockRenderManger()
 {
 	m_instancingLayout = std::make_unique<VertexBufferLayout>();
 	m_instancingLayout->Push<int>(3);
-	
+
 	Block::Init();
 
 	for (int i = 0; i < int(BlockType::BlockTypeCount) - 1; i++)
 	{
-		GLCall( glGenBuffers(1, &m_typeInstanceID[i]));
+		GLCall(glGenBuffers(1, &m_typeInstanceID[i]));
 		m_va[i] = std::make_unique<VertexArray>();
-		
+
 	}
 	renderer = std::make_unique<Renderer>();
-	blockShader = std::make_unique<Shader>("res/Shaders/Block.shader"); 
+	blockShader = std::make_unique<Shader>("res/Shaders/Block.shader");
 	BlockDataBase::Init();
-}
+
+	//loop for each type and do this line
+	for (int i = 0; i <int( BlockType::BlockTypeCount) - 1; i++){
+		m_va[(int)i ]->AddBuffer(BlockDataBase::GetVertexBuffer(), BlockDataBase::GetVertexLayout(), m_typeInstanceID[(int)i ], m_instancingLayout.get());
+}}
 
 BlockRenderManger::~BlockRenderManger()
 {
@@ -37,8 +41,8 @@ void BlockRenderManger::AddBlock(BlockType type, glm::ivec2 ChunkOffset, int x, 
 	if (type == BlockType::Air)
 		return;
 	m_RenderBlocks[(int)type - 1].push_back(glm::ivec3(ChunkOffset.x + x, ChunkOffset.y + y, z) );
-//	UpdateBlocks(type);
-
+	//UpdateBlocks(type);
+	firstTime = true;
 }
 
 void BlockRenderManger::DeleteBlock(BlockType type, glm::ivec2 ChunkOffset, int x, int y, int z)
@@ -58,15 +62,16 @@ void BlockRenderManger::DeleteBlock(BlockType type, glm::ivec2 ChunkOffset, int 
 		}
 	}
 //	UpdateBlocks(type);
+	firstTime = true;
 }
 
 void BlockRenderManger::Render()
 {
-	
+
 	for (int i = 0; i<int(BlockType::BlockTypeCount) - 1; i++)
 	{
 		if(firstTime)
-		UpdateBlocks(BlockType(i+1));
+			UpdateBlocks(BlockType(i+1));
 		blockShader->Bind();
 		blockShader->SetUniformElement("MVP", MVP);
 		BlockDataBase::GetBlockData(BlockType(i + 1)).BindTexture();
@@ -90,7 +95,7 @@ void BlockRenderManger::UpdateBlocks(BlockType type)
 	
 	GLCall(glBindBuffer(GL_ARRAY_BUFFER, m_typeInstanceID[(int)type - 1]));
 	GLCall(glBufferData(GL_ARRAY_BUFFER, m_RenderBlocks[(int)type - 1].size() * sizeof(glm::ivec3), glm::value_ptr(m_RenderBlocks[(int)type - 1][0]), GL_DYNAMIC_DRAW));
-	m_va[(int)type-1]->AddBuffer(BlockDataBase::GetVertexBuffer(), BlockDataBase::GetVertexLayout(), m_typeInstanceID[(int)type - 1], m_instancingLayout.get());
-	
+
+
 	
 }

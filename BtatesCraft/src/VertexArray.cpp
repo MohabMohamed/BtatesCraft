@@ -47,7 +47,8 @@ void VertexArray::AddBuffer(const VertexBuffer & vb, const VertexBufferLayout & 
 		offset += element.count*VertexBufferElement::GetTypeSize(element.type);
 
 	}
-	GLCall(glEnableVertexAttribArray(instanceID));
+	GLCall(glBindBuffer(GL_ARRAY_BUFFER, instanceID));
+	GLCall(glEnableVertexAttribArray(i));
 	glVertexAttribPointer(i, instanceElements[0].count, instanceElements[0].type, instanceElements[0].normalized ? GL_TRUE : GL_FALSE, instanceLayout.GetStride(), (const void*)0);
 	glVertexAttribDivisor(i, 1);
 }
@@ -69,7 +70,7 @@ void VertexArray::AddBuffer(const VertexBuffer * vb, const VertexBufferLayout * 
 		offset += element.count*VertexBufferElement::GetTypeSize(element.type);
 
 	}
-
+	GLCall(glBindBuffer(GL_ARRAY_BUFFER, instanceID));
 	GLCall(glEnableVertexAttribArray(i));
 	glVertexAttribPointer(i, instanceElements[0].count, instanceElements[0].type, instanceElements[0].normalized ? GL_TRUE : GL_FALSE, instanceLayout->GetStride(), (const void*)0);
 	glVertexAttribDivisor(i, 1);
@@ -109,7 +110,8 @@ void VertexArray::AddBuffer(const VertexBuffer && vb, const VertexBufferLayout &
 		offset += element.count*VertexBufferElement::GetTypeSize(element.type);
 
 	}
-	GLCall(glEnableVertexAttribArray(instanceID));
+	GLCall(glBindBuffer(GL_ARRAY_BUFFER, instanceID));
+	GLCall(glEnableVertexAttribArray(i));
 	glVertexAttribPointer(i, instanceElements[0].count, instanceElements[0].type, instanceElements[0].normalized ? GL_TRUE : GL_FALSE, instanceLayout.GetStride(), (const void*)0);
 	glVertexAttribDivisor(i, 1);
 }
