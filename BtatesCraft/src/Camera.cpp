@@ -21,14 +21,12 @@ void Camera::Input(float deltaTime)
 	KeyboardInput(deltaTime);
 	MouseInput(deltaTime);
 	Right = glm::normalize(glm::cross(Front, Up));
-
+	UpdateViewMat();
 }
 
-glm::mat4 Camera::GetViewMat()
+void Camera::UpdateViewMat()
 {
-	return glm::lookAt(Position, Position + Front, Up);
-
-	
+	View = glm::lookAt(Position, Position + Front, Up);
 }
 
 void Camera::KeyboardInput(float deltaTime)

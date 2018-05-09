@@ -14,12 +14,15 @@ private:
 	GLFWwindow * window;
 	double lastX = 250, lastY = 250, Yaw=45, Pitch=45;
 	bool firstMouseMovment;
+	glm::mat4 View;
 public:
 		 Camera(GLFWwindow*);
 		 ~Camera();
 	void Input(float deltaTime);
-	glm::mat4 GetViewMat();
+inline   glm::mat4 Camera::GetViewMat() { return View;	}
+
 private:
+	void UpdateViewMat();
 	void KeyboardInput(float deltaTime);
 	void MouseInput(float deltaTime);
 

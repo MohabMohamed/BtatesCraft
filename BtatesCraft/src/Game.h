@@ -7,6 +7,7 @@
 class BlockRenderManger;
 class Camera;
 class Chunck;
+class BlockPicker;
 struct GLFWwindow;
 
 
@@ -28,6 +29,7 @@ private:
 	unsigned int Seed;
 	std::array<std::unique_ptr<Chunck>,WORLD_AREA > chuncks;
 	std::unique_ptr<Camera> camera;
+	std::unique_ptr<BlockPicker> Picker;
 	std::unique_ptr<BlockRenderManger> BlockRenderer;
 
 

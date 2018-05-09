@@ -8,7 +8,7 @@
 #include "BlockRenderManger.h"
 #include "Chunck.h"
 #include "Block.h"
-
+#include "BlockPicker.h"
 
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
@@ -80,6 +80,7 @@ void Game::Init()
 	MVP = ProjectionMatrix*ViewMatrix*ModelMatrix;
 
 	BlockRenderer = std::make_unique<BlockRenderManger>();
+	Picker = std::make_unique<BlockPicker>(window, camera.get(), ProjectionMatrix);
 	lastFrame = std::chrono::steady_clock::now();
 	InitChunks();
 }
