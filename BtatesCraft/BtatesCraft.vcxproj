@@ -176,6 +176,8 @@
     <ClCompile Include="src\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="glew32.dll" />
+    <None Include="glfw3.dll" />
     <None Include="res\Shaders\Basic.shader" />
     <None Include="res\Shaders\Block.shader" />
     <None Include="src\vendor\glm\core\func_common.inl" />

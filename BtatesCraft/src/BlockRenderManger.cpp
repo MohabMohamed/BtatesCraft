@@ -51,11 +51,11 @@ void BlockRenderManger::DeleteBlock(BlockType type, glm::ivec2 ChunkOffset, int 
 		return;
 
 	int fullX = ChunkOffset.x + x;
-	int fullY = ChunkOffset.y + y;
+	int fullz = ChunkOffset.y + z;
 	
 	for (auto it = m_RenderBlocks[(int)type-1].begin(); it != m_RenderBlocks[(int)type - 1].end(); ++it)
 	{
-		if(it->x==fullX && it->y == fullY && it->z == z)
+		if(it->x==fullX && it->y == y && it->z == fullz)
 		{
 			m_RenderBlocks[(int)type - 1].erase(it);
 			break;
