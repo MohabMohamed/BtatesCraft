@@ -1,5 +1,6 @@
 #include "Game.h"
 #include <iostream>
+#include "vendor/irrKlang/irrKlang.h"
 #include "gl/glew.h"
 #include "gl/glfw3.h"
 #include "glm/gtc/matrix_transform.hpp"
@@ -66,7 +67,8 @@ Game::Game(const char * name, int width, int hight)
 
 Game::~Game()
 {
-		glfwTerminate();
+	SoundEngine->drop();
+	glfwTerminate();
 }
 
 void Game::Init()
@@ -83,6 +85,12 @@ void Game::Init()
 	Picker = std::make_unique<BlockPicker>(window, camera.get(), ProjectionMatrix);
 	lastFrame = std::chrono::steady_clock::now();
 	InitChunks();
+
+	SoundEngine = irrklang::createIrrKlangDevice();
+	if (!SoundEngine)
+		return ;
+
+	SoundEngine->play2D("res/sounds/cave story theme piano.mp3", true);
 }
 void Game::InitChunks() {
 	glm::ivec2 pos;

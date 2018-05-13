@@ -97,7 +97,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glew32.lib;opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;opengl32.lib;glfw3.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -134,7 +134,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glew32.lib;opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;opengl32.lib;glfw3.lib;irrKlang.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -178,6 +178,9 @@
   <ItemGroup>
     <None Include="glew32.dll" />
     <None Include="glfw3.dll" />
+    <None Include="ikpFlac.dll" />
+    <None Include="ikpMP3.dll" />
+    <None Include="irrKlang.dll" />
     <None Include="res\Shaders\Basic.shader" />
     <None Include="res\Shaders\Block.shader" />
     <None Include="src\vendor\glm\core\func_common.inl" />
@@ -425,6 +428,27 @@
     <ClInclude Include="src\vendor\GL\glfw3native.h" />
     <ClInclude Include="src\vendor\GL\glxew.h" />
     <ClInclude Include="src\vendor\GL\wglew.h" />
+    <ClInclude Include="src\vendor\irrKlang\ik_ESoundEngineOptions.h" />
+    <ClInclude Include="src\vendor\irrKlang\ik_ESoundOutputDrivers.h" />
+    <ClInclude Include="src\vendor\irrKlang\ik_EStreamModes.h" />
+    <ClInclude Include="src\vendor\irrKlang\ik_IAudioRecorder.h" />
+    <ClInclude Include="src\vendor\irrKlang\ik_IAudioStream.h" />
+    <ClInclude Include="src\vendor\irrKlang\ik_IAudioStreamLoader.h" />
+    <ClInclude Include="src\vendor\irrKlang\ik_IFileFactory.h" />
+    <ClInclude Include="src\vendor\irrKlang\ik_IFileReader.h" />
+    <ClInclude Include="src\vendor\irrKlang\ik_IRefCounted.h" />
+    <ClInclude Include="src\vendor\irrKlang\ik_irrKlangTypes.h" />
+    <ClInclude Include="src\vendor\irrKlang\ik_ISound.h" />
+    <ClInclude Include="src\vendor\irrKlang\ik_ISoundDeviceList.h" />
+    <ClInclude Include="src\vendor\irrKlang\ik_ISoundEffectControl.h" />
+    <ClInclude Include="src\vendor\irrKlang\ik_ISoundEngine.h" />
+    <ClInclude Include="src\vendor\irrKlang\ik_ISoundMixedOutputReceiver.h" />
+    <ClInclude Include="src\vendor\irrKlang\ik_ISoundSource.h" />
+    <ClInclude Include="src\vendor\irrKlang\ik_ISoundStopEventReceiver.h" />
+    <ClInclude Include="src\vendor\irrKlang\ik_IVirtualRefCounted.h" />
+    <ClInclude Include="src\vendor\irrKlang\ik_SAudioStreamFormat.h" />
+    <ClInclude Include="src\vendor\irrKlang\ik_vec3d.h" />
+    <ClInclude Include="src\vendor\irrKlang\irrKlang.h" />
     <ClInclude Include="src\vendor\PerlinNoise\PerlinNoise.h" />
     <ClInclude Include="src\vendor\stb\stb_image.h" />
     <ClInclude Include="src\VertexBuffer.h" />
@@ -435,6 +459,9 @@
     <Image Include="res\Textures\Dirt.png" />
     <Image Include="res\Textures\Grass.png" />
     <Image Include="res\Textures\Sand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="res\sounds\cave story theme piano.mp3" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
