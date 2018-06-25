@@ -92,7 +92,7 @@
       <EnforceTypeConversionRules>
       </EnforceTypeConversionRules>
       <AdditionalUsingDirectories>%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
-      <AdditionalIncludeDirectories>src\vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src\vendor;src;src\scenes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -127,7 +127,7 @@
       <EnforceTypeConversionRules>
       </EnforceTypeConversionRules>
       <AdditionalUsingDirectories>%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
-      <AdditionalIncludeDirectories>src\vendor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src\vendor;src;src\scenes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -165,6 +165,7 @@
     <ClCompile Include="src\Chunck.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GLErrorHandler.cpp" />
+    <ClCompile Include="src\scenes\GameScene.cpp" />
     <ClCompile Include="src\Shader.cpp" />
     <ClCompile Include="src\IndexBuffer.cpp" />
     <ClCompile Include="src\Main.cpp" />
@@ -296,6 +297,8 @@
     <ClInclude Include="src\GLErrorHandler.h" />
     <ClInclude Include="src\BlockPicker.h" />
     <ClInclude Include="src\Random.h" />
+    <ClInclude Include="src\scenes\GameScene.h" />
+    <ClInclude Include="src\scenes\Scene.h" />
     <ClInclude Include="src\Shader.h" />
     <ClInclude Include="src\IndexBuffer.h" />
     <ClInclude Include="src\Renderer.h" />
