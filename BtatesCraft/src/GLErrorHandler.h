@@ -1,11 +1,13 @@
 #pragma once
 
 
-
-
-
-
+#ifdef _MSVC_VER
 #define ASSERT(x) if(!(x)) __debugbreak();
+#else
+#include <assert.h>
+#define ASSERT(x) assert(x)
+#endif
+
 #ifdef _DEBUG
 #define GLCall(x) GLClearError();\
 		x;\

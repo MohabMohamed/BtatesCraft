@@ -1,8 +1,8 @@
 #include "Game.h"
 #include <iostream>
-#include "gl/glew.h"
-#include "gl/glfw3.h"
-#include "GameScene.h"
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
+#include "scenes/GameScene.h"
 
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)

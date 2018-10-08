@@ -4,7 +4,7 @@
 #include "BlockRenderManger.h"
 #include "vendor/PerlinNoise/PerlinNoise.h"
 
-Chunck::Chunck(BlockRenderManger * blocksRenderer,glm::ivec2& position, unsigned int seed)
+Chunck::Chunck(BlockRenderManger * blocksRenderer, const glm::ivec2& position, unsigned int seed)
 	:Position(position),BlocksRenderer(blocksRenderer)
 {
 

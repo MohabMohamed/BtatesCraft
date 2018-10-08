@@ -1,7 +1,7 @@
 #pragma once
 #include <memory>
 #include "glm/glm.hpp"
-#include "GL/glfw3.h"
+#include <GLFW/glfw3.h>
 class Camera;
 
 class BlockPicker 
