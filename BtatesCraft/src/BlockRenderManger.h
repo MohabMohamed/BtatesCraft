@@ -2,7 +2,7 @@
 #include <vector>
 #include <array>
 #include <memory>
-#include "glm\glm.hpp"
+#include <glm/glm.hpp>
 #include "BlockType.h"
 #include "Renderer.h"
 #include "VertexBufferLayout.h"

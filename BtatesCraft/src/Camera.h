@@ -1,8 +1,8 @@
 #pragma once
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
-#include "glm/gtx/transform.hpp"
-#include "GL/glfw3.h"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/transform.hpp>
+#include <GLFW/glfw3.h>
 
 
 
@@ -19,7 +19,7 @@ public:
 		 Camera(GLFWwindow*);
 		 ~Camera();
 	void Input(float deltaTime);
-inline   glm::mat4 Camera::GetViewMat() { return View;	}
+    inline glm::mat4 GetViewMat() { return View; }
 
 private:
 	void UpdateViewMat();

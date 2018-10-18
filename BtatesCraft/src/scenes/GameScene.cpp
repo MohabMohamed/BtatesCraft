@@ -1,10 +1,10 @@
 #include "GameScene.h"
 #include <chrono>
 #include "irrKlang/irrKlang.h"
-#include "gl/glew.h"
-#include "gl/glfw3.h"
-#include "glm/gtc/matrix_transform.hpp"
-#include "glm/gtx/transform.hpp"
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/transform.hpp>
 #include "Camera.h"
 #include "BlockRenderManger.h"
 #include "Chunck.h"

@@ -1,6 +1,10 @@
 #include "IndexBuffer.h"
 #include "GL/glew.h"
 #include "GLErrorHandler.h"
+#ifndef _MSVC_VER
+#include <assert.h>
+#define ASSERT(x) assert(x)
+#endif
 
 IndexBuffer::IndexBuffer(const unsigned int* data, unsigned int count):
 	m_Count(count)
