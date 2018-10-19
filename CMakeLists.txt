@@ -4,6 +4,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_INSTALL_RPATH "./lib")
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/BtatesCraft/)
 
+find_package(Threads REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
 
@@ -28,7 +29,8 @@ set(LIBRARIES
   ${OPENGL_LIBRARIES}
   ${GLEW_LIBRARIES}
   ${GLFW_LIBRARIES}
-  ${IRRKLANG_LIBRARY})
+  ${IRRKLANG_LIBRARY}
+  ${CMAKE_THREAD_LIBS_INIT})
 
 add_executable(BtatesCraft ${SOURCES})
 target_include_directories(BtatesCraft PUBLIC ${INCLUDES})
