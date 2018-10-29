@@ -19,4 +19,4 @@ VertexBuffer*  GetVertexBuffer();
 VertexBufferLayout*  GetVertexLayout();
 IndexBuffer*  GetIndexBuff();
 
-};
+}

@@ -6,7 +6,7 @@ struct GLFWwindow;
 namespace Scene
 {
 	class Scene;
-};
+}
 
 class Game
 {

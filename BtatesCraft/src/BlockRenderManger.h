@@ -24,6 +24,7 @@ public:
 	 BlockRenderManger();
 	~BlockRenderManger();
 	void AddBlock(BlockType type,glm::ivec2 ChunkOffset,int x, int y, int z);
+    void DeleteChunk(glm::ivec2 ChunkOffset);
 	void DeleteBlock(BlockType type, glm::ivec2 ChunkOffset, int x, int y, int z);
 	void Clear();
 	void Render();

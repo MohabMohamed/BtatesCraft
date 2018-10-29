@@ -8,9 +8,9 @@ class BlockPicker
 {
 private :
 	glm::vec3 Ray;
+	GLFWwindow* window;
 	Camera* CurCamera;
 	glm::mat4 View,Proj;
-	GLFWwindow* window;
 public:
 	BlockPicker(GLFWwindow* window,Camera* camera,glm::mat4& Proj);
 	glm::vec3 GetRay();

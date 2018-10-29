@@ -33,3 +33,6 @@ set(LIBRARIES
 add_executable(BtatesCraft ${SOURCES})
 target_include_directories(BtatesCraft PUBLIC ${INCLUDES})
 target_link_libraries(BtatesCraft ${LIBRARIES})
+if(${CMAKE_CXX_COMPILER_ID} STREQUAL GNU)
+  target_compile_options(BtatesCraft PUBLIC -Wall -pedantic)
+endif()
