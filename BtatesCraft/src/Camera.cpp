@@ -49,11 +49,13 @@ void Camera::MouseInput(float deltaTime)
 {
 	double xpos, ypos;
 	glfwGetCursorPos(window, &xpos, &ypos);
-	if (firstMouseMovment)
+    
+    static bool firstMouseMovement = true;
+	if (firstMouseMovement)
 	{
 		lastX = xpos;
 		lastY = ypos;
-		firstMouseMovment = false;
+		firstMouseMovement = false;
 	}
 
 	float xoffset = xpos - lastX;
@@ -75,10 +77,10 @@ void Camera::MouseInput(float deltaTime)
 		if (Pitch < -89.0f)
 			Pitch = -89.0f;
 	
-		if (Yaw > 360)
-			Yaw = 0;
-		if (Yaw < 0)
-			Yaw = 360;
+		while (Yaw >= 360.0)
+            Yaw -= 360.0;
+		while (Yaw < 0.0)
+            Yaw += 360;
 
 		glm::vec3 front;
 		front.x = cos(glm::radians(Yaw)) * cos(glm::radians(Pitch));

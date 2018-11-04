@@ -13,7 +13,6 @@ private:
 	float Speed = 5, Sensitivity = 0.05f;
 	GLFWwindow * window;
 	double lastX = 250, lastY = 250, Yaw=45, Pitch=45;
-	bool firstMouseMovment;
 	glm::mat4 View;
 public:
 		 Camera(GLFWwindow*);

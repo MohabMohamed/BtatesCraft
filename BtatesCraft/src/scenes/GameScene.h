@@ -15,7 +15,7 @@ class BlockPicker;
 struct GLFWwindow;
 namespace irrklang {
 	class ISoundEngine;
-};
+}
 
 namespace Scene 
 {
@@ -34,10 +34,10 @@ namespace Scene
 		glm::mat4 ProjectionMatrix;
 		glm::mat4 MVP;
 		unsigned int Seed;
-		std::array<std::unique_ptr<Chunck>, WORLD_AREA > chuncks;
 		std::unique_ptr<Camera> camera;
 		std::unique_ptr<BlockPicker> Picker;
 		std::unique_ptr<BlockRenderManger> BlockRenderer;
+		std::array<std::unique_ptr<Chunck>, WORLD_AREA > chuncks;
 	public:
 		GameScene(GLFWwindow* window);
 		~GameScene();
@@ -53,4 +53,4 @@ namespace Scene
 	
 
 
-};
+}

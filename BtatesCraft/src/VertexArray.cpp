@@ -19,12 +19,12 @@ void VertexArray::AddBuffer(const VertexBuffer & vb, const VertexBufferLayout & 
 	Bind();
 	vb.Bind();
 	const auto elements = layout.GetElements();
-	unsigned int offset = 0;
+	GLchar* offset = 0;
 	for (unsigned int i = 0; i<elements.size(); i++)
 	{
 		const auto& element = elements[i];
 		GLCall(glEnableVertexAttribArray(i));
-		glVertexAttribPointer(i, element.count, element.type, element.normalized ? GL_TRUE : GL_FALSE, layout.GetStride(), (const void*)offset);
+		glVertexAttribPointer(i, element.count, element.type, element.normalized ? GL_TRUE : GL_FALSE, layout.GetStride(), offset);
 		offset += element.count*VertexBufferElement::GetTypeSize(element.type);
 
 	}
@@ -37,7 +37,7 @@ void VertexArray::AddBuffer(const VertexBuffer & vb, const VertexBufferLayout & 
 	vb.Bind();
 	const auto elements = layout.GetElements();
 	const auto instanceElements = instanceLayout.GetElements();
-	unsigned int offset = 0;
+	GLchar* offset = 0;
 	unsigned int i;
 	for (i = 0; i<elements.size(); i++)
 	{
@@ -60,7 +60,7 @@ void VertexArray::AddBuffer(const VertexBuffer * vb, const VertexBufferLayout * 
 	vb->Bind();
 	const auto elements = layout->GetElements();
 	const auto instanceElements = instanceLayout->GetElements();
-	unsigned int offset = 0;
+	GLchar* offset = 0;
 	unsigned int i;
 	for (i = 0; i<elements.size(); i++)
 	{
@@ -82,7 +82,7 @@ void VertexArray::AddBuffer(const VertexBuffer && vb, const VertexBufferLayout &
 	Bind();
 	vb.Bind();
 	const auto elements = layout.GetElements();
-	unsigned int offset = 0;
+	GLchar* offset = 0;
 	for (unsigned int i=0;i<elements.size();i++)
 	{
 		const auto& element = elements[i];
@@ -100,7 +100,7 @@ void VertexArray::AddBuffer(const VertexBuffer && vb, const VertexBufferLayout &
 	vb.Bind();
 	const auto elements = layout.GetElements();
 	const auto instanceElements = instanceLayout.GetElements();
-	unsigned int offset = 0;
+	GLchar* offset = 0;
 	unsigned int i;
 	for (i = 0; i<elements.size(); i++)
 	{

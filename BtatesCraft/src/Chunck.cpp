@@ -10,7 +10,6 @@ Chunck::Chunck(BlockRenderManger * blocksRenderer, const glm::ivec2& position, u
 
 	PerlinNoise noise(seed);
 	
-	int normlizer = std::pow(10, std::max(NumDigits(position.x), NumDigits(position.y)));
 	glm::vec2 normPos;
 	normPos.x = float(position.x) / 5.0f;
 	normPos.y = float(position.y) / 5.0f;
@@ -41,18 +40,7 @@ Chunck::Chunck(BlockRenderManger * blocksRenderer, const glm::ivec2& position, u
 
 Chunck::~Chunck()
 {
-	for (int x = 0; x < 16; x++)
-	{
-
-		for (int y = 0; y < 16; y++)
-		{
-
-			for (int z = 0; z < 16; z++)
-			{
-				BlocksRenderer->DeleteBlock(BlockType(Blocks[x][y][z]), Position, x, y, z);
-			}
-		}
-	}
+    BlocksRenderer->DeleteChunk(Position);
 }
 
 int8_t Chunck::GetType(int x, int y, int z)

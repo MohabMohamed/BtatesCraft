@@ -1,4 +1,5 @@
 #include "BlockRenderManger.h"
+#include <algorithm>
 #include <glm/gtc/type_ptr.hpp>
 #include "BlockDataBase.h"
 #include "Block.h"
@@ -6,6 +7,7 @@
 
 
 BlockRenderManger::BlockRenderManger()
+    : firstTime(true)
 {
 	m_instancingLayout = std::make_unique<VertexBufferLayout>();
 	m_instancingLayout->Push<int>(3);
@@ -45,6 +47,22 @@ void BlockRenderManger::AddBlock(BlockType type, glm::ivec2 ChunkOffset, int x, 
 	firstTime = true;
 }
 
+void BlockRenderManger::DeleteChunk(glm::ivec2 ChunkOffset)
+{
+    for (auto& blocks : m_RenderBlocks)
+    {
+        std::remove_if(blocks.begin(),
+                     blocks.end(),
+                     [&](auto&& block)
+                     {
+                         return (block.x >= ChunkOffset.x
+                                 && block.x < ChunkOffset.x + 16
+                                 && block.y >= ChunkOffset.y
+                                 && block.y < ChunkOffset.y + 16);
+                     });
+    }
+}
+
 void BlockRenderManger::DeleteBlock(BlockType type, glm::ivec2 ChunkOffset, int x, int y, int z)
 {
 	if (type == BlockType::Air)
@@ -52,15 +70,17 @@ void BlockRenderManger::DeleteBlock(BlockType type, glm::ivec2 ChunkOffset, int 
 
 	int fullX = ChunkOffset.x + x;
 	int fullz = ChunkOffset.y + z;
-	
-	for (auto it = m_RenderBlocks[(int)type-1].begin(); it != m_RenderBlocks[(int)type - 1].end(); ++it)
-	{
-		if(it->x==fullX && it->y == y && it->z == fullz)
-		{
-			m_RenderBlocks[(int)type - 1].erase(it);
-			break;
-		}
-	}
+
+    auto& blocks = m_RenderBlocks[(int)type-1];
+    auto it = std::find_if(blocks.begin(),
+                           blocks.end(),
+                           [&](auto&& block)
+                           {
+                               return (block.x == fullX
+                                       && block.y == y
+                                       && block.z == fullz);
+                           });
+    if (it != blocks.end()) blocks.erase(it);
 //	UpdateBlocks(type);
 	firstTime = true;
 }
@@ -72,7 +92,6 @@ void BlockRenderManger::Clear()
 
 void BlockRenderManger::Render()
 {
-
 	for (int i = 0; i<int(BlockType::BlockTypeCount) - 1; i++)
 	{
 		if(firstTime)
@@ -83,9 +102,7 @@ void BlockRenderManger::Render()
 		renderer->Draw(*m_va[i], *BlockDataBase::GetIndexBuff(), *blockShader,m_RenderBlocks[i].size());
 	
 	}
-
 	firstTime = false;
-	int x=5;
 }
 
 void BlockRenderManger::SetMVP(glm::mat4& mvp)
